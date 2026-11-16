@@ -1,13 +1,18 @@
 # MyGray – Documentation Index
 
-All controlled documents live in this repository (docs-as-code). A document is
-*released* when the containing release tag is signed and the document header
-status is `approved`. Every document starts with the standard header:
+All controlled documents live in this repository (docs-as-code).
+A document in this stage is *NOT released* unless clearly marked with the
+standard header
 
 ```
 | Doc ID | MG-xxx-nnn | Version | x.y | Status | draft/reviewed/approved |
 | Author | … | Reviewer | … | Approver | … | Date | YYYY-MM-DD |
 ```
+
+A document is only released it if the Version entry is set, the Status is approved and
+the fields of Author, Reviewer, Approver and Date are clearly set.
+
+Any unreleased files are stubs, skeletons or works in progress.
 
 | Area | Folder | Governing standard / regulation |
 |------|--------|---------------------------------|
