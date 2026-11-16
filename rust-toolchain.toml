@@ -1,0 +1,6 @@
+# Pinned toolchain: the compiler is a development tool under IEC 62304 §8
+# (configuration management). Changing it is a change request.
+[toolchain]
+channel = "1.100.0"
+components = ["rustfmt", "clippy", "llvm-tools-preview"]
+profile = "minimal"

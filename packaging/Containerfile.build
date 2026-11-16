@@ -1,0 +1,4 @@
+# Pinned build environment (development tool under configuration management).
+FROM rust:1.100.0-alpine
+RUN apk add --no-cache musl-dev git \
+ && cargo install --locked cargo-nextest cargo-deny cargo-llvm-cov cargo-cyclonedx

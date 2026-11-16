@@ -1,0 +1,23 @@
+# MyGray example configuration. Every key is documented in docs/ifu/installation-manual.md.
+[dicom]
+ae_title = "MYGRAY"
+listen = "0.0.0.0:11112"
+spool_dir = "/var/lib/mygray/spool"
+quarantine_dir = "/var/lib/mygray/quarantine"
+min_free_bytes = 10_737_418_240   # 10 GiB
+ae_whitelist = ["CT_ROOM1", "ANGIO_1"]
+max_associations = 16
+
+[store]
+path = "/var/lib/mygray/db"
+backup_dir = "/var/backups/mygray"
+
+[alert]
+syslog = "tls://siem.hospital.local:6514"
+webhooks = []
+
+[web]
+listen = "0.0.0.0:8443"
+tls_cert = "/etc/mygray/tls/cert.pem"
+tls_key = "/etc/mygray/tls/key.pem"
+session_timeout_min = 15

@@ -1,0 +1,2 @@
+# ADR-0002 Durable spool + WAL before C-STORE acknowledgement
+Status: accepted · Context: requirement "never lose data without information". · Decision: raw bytes are content-addressed and fsynced before Success; processing is asynchronous; raw is the primary record, the graph is re-buildable. · Alternatives: write directly to DB in association (rejected: DB latency causes DIMSE timeouts, DB bug → data loss). · Consequences: disk sizing, retention job, reindex tool.

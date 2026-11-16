@@ -1,0 +1,1 @@
+//! Heartbeats from every long-running task; missing heartbeat ⇒ Supervision alert (SRS-ALR-005). Also detects "device silence": a modality that normally sends RDSRs daily has not sent for N hours (SRS-ALR-014).

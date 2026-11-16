@@ -1,0 +1,16 @@
+[package]
+name = "mygray-system-tests"
+description = "System-level verification (IEC 62304 §5.7): black-box tests against the running service"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+publish.workspace = true
+
+[dependencies]
+mygray-core.workspace = true
+tokio.workspace = true
+tempfile.workspace = true
+
+[lints]
+workspace = true

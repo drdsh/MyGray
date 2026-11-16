@@ -1,0 +1,25 @@
+# cargo-deny: SOUP license, advisory and source control (IEC 81001-5-1 §5.3, §7)
+[graph]
+all-features = true
+
+[advisories]
+version = 2
+yanked = "deny"
+ignore = []   # every ignore needs an entry in docs/cybersecurity/vulnerability-register.md
+
+[licenses]
+version = 2
+allow = ["MIT", "Apache-2.0", "Apache-2.0 WITH LLVM-exception", "BSD-2-Clause", "BSD-3-Clause",
+         "ISC", "Unicode-3.0", "Zlib", "CC0-1.0", "MPL-2.0"]
+confidence-threshold = 0.9
+
+[bans]
+multiple-versions = "warn"
+wildcards = "deny"
+deny = [
+    { crate = "openssl", reason = "use rustls; avoid C TLS stack (SOUP minimisation)" },
+]
+
+[sources]
+unknown-registry = "deny"
+unknown-git = "deny"

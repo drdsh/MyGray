@@ -1,0 +1,2 @@
+# MG-DPIA-001 Data Protection Impact Assessment (GDPR Art. 35) – manufacturer input
+Processing description · categories of data (health data Art. 9) · necessity & proportionality (data minimisation SRS-PRV-001) · risks to data subjects · measures (pseudonymised dose model, encryption, RBAC, audit, retention). Note: the hospital is controller; the manufacturer provides this as input and is processor only for support access.

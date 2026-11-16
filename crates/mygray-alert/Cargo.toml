@@ -1,0 +1,32 @@
+[package]
+name = "mygray-alert"
+description = "SW item SI-06: alert bus, error capture, configurable dose rule engine, notification sinks"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+publish.workspace = true
+
+[package.metadata.mygray]
+software-item = "SI-06"
+safety-class = "B"
+
+# Deliberately does NOT depend on mygray-store: rules get data through the
+# `DoseContext` trait and persist alerts through `AlertRepository` (ports).
+[dependencies]
+mygray-core.workspace = true
+mygray-config.workspace = true
+tokio.workspace = true
+thiserror.workspace = true
+tracing.workspace = true
+serde.workspace = true
+serde_json.workspace = true
+time.workspace = true
+
+[dev-dependencies]
+rstest.workspace = true
+proptest.workspace = true
+insta.workspace = true
+
+[lints]
+workspace = true

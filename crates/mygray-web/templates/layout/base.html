@@ -1,0 +1,14 @@
+<!doctype html>
+<html lang="{{ lang }}">
+<head>
+  <meta charset="utf-8">
+  <title>MyGray – {% block title %}{% endblock %}</title>
+  <link rel="stylesheet" href="/static/app.css">
+</head>
+<body>
+  {% include "partials/nav.html" %}
+  {% include "partials/system_status.html" %}
+  <main>{% block content %}{% endblock %}</main>
+  <footer>MyGray {{ version }} · UDI-DI {{ udi_di }} · <a href="/about">Instructions for use</a></footer>
+</body>
+</html>

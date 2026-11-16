@@ -1,0 +1,2 @@
+# MG-SEC-001 Product Security Plan (IEC 81001-5-1, MDCG 2019-16)
+Security requirements (SRS-SEC-*), threat modelling (`threat-model.md`), secure coding (lints, no unsafe), SOUP/SBOM management (`cargo deny`, CycloneDX), security verification (fuzzing, SAST via clippy, DAST/pentest), vulnerability handling & coordinated disclosure (`vulnerability-register.md`), security information for customers (MDS2 form, IFU security section, hardening guide).

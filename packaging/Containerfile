@@ -1,0 +1,13 @@
+# Runtime image for MyGray.
+FROM rust:1.100.0-alpine AS build
+WORKDIR /src
+COPY . .
+RUN cargo build --release --locked -p mygray-server
+
+FROM alpine:3
+RUN adduser -D -u 10001 mygray
+COPY --from=build /src/target/release/mygray /usr/local/bin/mygray
+USER mygray
+EXPOSE 11112 8443
+VOLUME ["/var/lib/mygray"]
+ENTRYPOINT ["/usr/local/bin/mygray"]

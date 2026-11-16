@@ -1,0 +1,16 @@
+[Unit]
+Description=MyGray radiation dose management
+After=network-online.target
+
+[Service]
+User=mygray
+ExecStart=/usr/local/bin/mygray --config /etc/mygray/mygray.toml
+Restart=on-failure
+KillSignal=SIGTERM
+TimeoutStopSec=45
+NoNewPrivileges=true
+ProtectSystem=strict
+ReadWritePaths=/var/lib/mygray /var/backups/mygray
+
+[Install]
+WantedBy=multi-user.target

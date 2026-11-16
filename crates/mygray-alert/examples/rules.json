@@ -1,0 +1,38 @@
+[
+  {
+    "id": "ct-head-ctdi-notification",
+    "version": 1,
+    "enabled": false,
+    "description": "NEMA XR 25 style notification value for adult head CT",
+    "scope": { "modality": "CT", "standard_protocol": "HEAD_ROUTINE", "age_years": { "min": 18 } },
+    "metric": "event_ctdi_vol",
+    "op": ">",
+    "threshold": { "value": 80.0, "unit": "mGy" },
+    "severity": "Warning",
+    "notify": ["role:Physicist"]
+  },
+  {
+    "id": "ir-substantial-radiation-dose",
+    "version": 1,
+    "enabled": false,
+    "description": "Substantial radiation dose level, interventional (skin follow-up)",
+    "scope": { "modality": "XA" },
+    "metric": "study_ref_air_kerma",
+    "op": ">=",
+    "threshold": { "value": 5.0, "unit": "Gy" },
+    "severity": "Critical",
+    "notify": ["role:Physicist", "role:Radiographer"]
+  },
+  {
+    "id": "patient-cumulative-ct-dlp-90d",
+    "version": 1,
+    "enabled": false,
+    "scope": { "modality": "CT" },
+    "metric": "patient_cumulative_dlp",
+    "window_days": 90,
+    "op": ">",
+    "threshold": { "value": 5000.0, "unit": "mGy.cm" },
+    "severity": "Warning",
+    "notify": ["role:Physicist"]
+  }
+]

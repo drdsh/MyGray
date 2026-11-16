@@ -1,0 +1,2 @@
+# ADR-0005 Server-side rendering (axum + askama) instead of SPA/WASM
+Status: accepted · Decision: HTML rendered on the server with compile-time templates; SVG charts rendered server-side; minimal JS. · Rationale: smaller attack surface, no browser-side SOUP, deterministic snapshot-testable output for dose display verification. · Alternative: Leptos SSR+hydration — possible later if interactivity requires it.

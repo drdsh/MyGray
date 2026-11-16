@@ -1,0 +1,22 @@
+# Not a workspace member (needs nightly + cargo-fuzz). Run:
+#   cargo +nightly fuzz run parse_bytes --fuzz-dir crates/mygray-rdsr/fuzz
+[package]
+name = "mygray-rdsr-fuzz"
+version = "0.0.0"
+publish = false
+edition = "2024"
+
+[package.metadata]
+cargo-fuzz = true
+
+[dependencies]
+libfuzzer-sys = "0.4"
+mygray-rdsr = { path = ".." }
+
+[workspace]
+
+[[bin]]
+name = "parse_bytes"
+path = "fuzz_targets/parse_bytes.rs"
+test = false
+doc = false

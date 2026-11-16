@@ -1,0 +1,31 @@
+[package]
+name = "mygray-server"
+description = "Composition root: wires all software items into the MyGray service binary"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+publish.workspace = true
+
+[package.metadata.mygray]
+software-item = "SI-08"
+safety-class = "B"
+
+[[bin]]
+name = "mygray"
+path = "src/main.rs"
+
+[dependencies]
+mygray-core.workspace = true
+mygray-config.workspace = true
+mygray-rdsr.workspace = true
+mygray-dicom-node.workspace = true
+mygray-store.workspace = true
+mygray-alert.workspace = true
+mygray-web.workspace = true
+tokio.workspace = true
+tracing.workspace = true
+tracing-subscriber.workspace = true
+
+[lints]
+workspace = true

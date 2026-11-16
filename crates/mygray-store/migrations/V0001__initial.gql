@@ -1,0 +1,10 @@
+-- Schema v1: constraints and indexes (Grafeo GQL). Forward-only.
+-- Natural keys
+-- CREATE CONSTRAINT ON (s:Study)  ASSERT s.study_uid  IS UNIQUE;
+-- CREATE CONSTRAINT ON (s:Series) ASSERT s.series_uid IS UNIQUE;
+-- CREATE CONSTRAINT ON (r:DoseReport) ASSERT r.sop_uid IS UNIQUE;
+-- CREATE CONSTRAINT ON (e:IrradiationEvent) ASSERT e.event_uid IS UNIQUE;
+-- CREATE CONSTRAINT ON (i:IngestRecord) ASSERT i.ingest_id IS UNIQUE;
+-- Lookup indexes
+-- CREATE INDEX ON :Study(performed_at);
+-- CREATE INDEX ON :Device(ae_title);

@@ -1,0 +1,120 @@
+# =============================================================================
+# MyGray – Radiation Dose Management Software
+# Cargo workspace root
+#
+# Each crate below is one IEC 62304 "software item" (see
+# docs/iec62304/software-architecture.md). Crate boundaries are deliberate
+# segregation boundaries: a crate may only depend on crates listed as its
+# allowed dependencies in the architecture document. `cargo xtask arch-check`
+# enforces this.
+# =============================================================================
+[workspace]
+resolver = "3"
+members = [
+    "crates/mygray-core",
+    "crates/mygray-config",
+    "crates/mygray-rdsr",
+    "crates/mygray-dicom-node",
+    "crates/mygray-store",
+    "crates/mygray-alert",
+    "crates/mygray-web",
+    "apps/mygray-server",
+    "tests/system",
+    "xtask",
+]
+default-members = ["apps/mygray-server"]
+
+[workspace.package]
+version = "0.1.0"
+edition = "2024"
+rust-version = "1.100.0"
+license = "LicenseRef-Proprietary"
+publish = false
+
+# -----------------------------------------------------------------------------
+# SOUP (Software Of Unknown Provenance) – IEC 62304 §5.3.3 / §7.1.2
+# Every entry here MUST have a matching row in docs/iec62304/soup-list.md
+# (`cargo xtask soup-check` verifies this). Versions are pinned with `=`
+# for reproducible, auditable builds. Updating a version is a change request.
+# -----------------------------------------------------------------------------
+[workspace.dependencies]
+# internal software items
+mygray-core       = { path = "crates/mygray-core" }
+mygray-config     = { path = "crates/mygray-config" }
+mygray-rdsr       = { path = "crates/mygray-rdsr" }
+mygray-dicom-node = { path = "crates/mygray-dicom-node" }
+mygray-store      = { path = "crates/mygray-store" }
+mygray-alert      = { path = "crates/mygray-alert" }
+mygray-web        = { path = "crates/mygray-web" }
+
+# runtime / foundations
+tokio              = { version = "=1.54.1", features = ["rt-multi-thread", "macros", "sync", "fs", "net", "signal", "time"] }
+thiserror          = "=2.0.21"
+serde              = { version = "=1.0.229", features = ["derive"] }
+serde_json         = "=1.0.154"
+tracing            = "=0.1.44"
+tracing-subscriber = { version = "=0.3.23", features = ["env-filter", "json"] }
+uuid               = { version = "=1.29.2", features = ["v4", "v7", "serde"] }
+time               = { version = "=0.3.55", features = ["serde", "formatting", "parsing", "macros"] }
+sha2               = "=0.11.1"
+secrecy            = "=0.10.3"
+figment            = { version = "=0.10.19", features = ["toml", "env"] }
+
+# DICOM (dicom-rs)
+dicom-core           = "=0.10.1"
+dicom-object         = "=0.10.1"
+dicom-ul             = "=0.10.1"
+dicom-dictionary-std = "=0.10.1"
+
+# Graph database
+grafeo = { version = "=0.6.3", default-features = false, features = ["gql", "grafeo-file"] }
+
+# Web (server-side rendering, no client-side framework)
+axum       = "=0.8.9"
+tower-http = { version = "=0.7.1", features = ["trace", "set-header", "limit", "timeout"] }
+askama     = "=0.16.1"
+argon2     = "=0.6.0"
+
+# test-only SOUP (not shipped, still listed for tool validation)
+proptest  = "=1.12.0"
+rstest    = "=0.28.0"
+insta     = { version = "=1.49.0", features = ["json"] }
+criterion = "=0.8.2"
+tempfile  = "=3.27.0"
+
+# -----------------------------------------------------------------------------
+# Lints – applied to every crate via `[lints] workspace = true`
+# -----------------------------------------------------------------------------
+[workspace.lints.rust]
+unsafe_code = "forbid"            # RC-SW-001: memory safety for safety-class B items
+missing_docs = "warn"
+unused_must_use = "deny"
+unreachable_pub = "warn"
+
+[workspace.lints.clippy]
+unwrap_used = "deny"              # RC-SW-002: no implicit panics in production paths
+expect_used = "deny"
+panic = "deny"
+indexing_slicing = "warn"
+arithmetic_side_effects = "warn"  # dose arithmetic must be explicit/checked
+float_cmp = "deny"
+todo = "allow"                    # skeleton phase; switch to "deny" before first release
+unimplemented = "allow"
+dbg_macro = "deny"
+print_stdout = "deny"
+print_stderr = "deny"
+large_enum_variant = "warn"
+
+# -----------------------------------------------------------------------------
+# Profiles
+# -----------------------------------------------------------------------------
+[profile.release]
+lto = "fat"
+codegen-units = 1
+panic = "unwind"       # unwind so the alert subsystem can capture panics (SRS-ALR-002)
+overflow-checks = true # keep integer overflow checks in release (RC-SW-003)
+debug = "line-tables-only"
+strip = false          # keep symbols for post-market problem analysis
+
+[profile.dev.package."*"]
+opt-level = 2          # DICOM/graph deps are slow unoptimised

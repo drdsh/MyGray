@@ -1,0 +1,9 @@
+/target
+**/*.rs.bk
+/var/
+/dist/
+**/fuzz/artifacts/
+**/fuzz/corpus/
+*.profraw
+lcov.info
+.env

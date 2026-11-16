@@ -1,0 +1,2 @@
+# ADR-0004 Grafeo as embedded graph database
+Status: proposed · Context: relationship-heavy domain (patient↔study↔device↔protocol↔DRL↔alert↔rule versions). · Decision: Grafeo embedded (no separate DB server → simpler installation, fewer attack surfaces), GQL via parameterised constant queries. · Risks: young SOUP (v0.6) → mitigations: SOUP evaluation, durability/crash tests in our suite, raw spool allows full rebuild, abstraction behind repository traits allows replacement.
