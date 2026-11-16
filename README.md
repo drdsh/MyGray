@@ -1,6 +1,28 @@
 # MyGray – Radiation Dose Management Software
 
-Skeleton/architecture repository for MyGray, a standalone medical device software
+## Regulatory & intended use disclaimer (EU MDR 2017/745)
+1. Non-Medical Intended Purpose: This software, along with all accompanying
+   documentation, is made available strictly for research, educational, and
+   software development purposes. It is NOT a medical device within the meaning
+   of Regulation (EU) 2017/745 (MDR) and is NOT intended for clinical
+   diagnosis, patient monitoring, prognosis, or treatment.
+2. Status of Regulatory Documentation: Any quality management, risk management
+   (ISO 14971), or software lifecycle (IEC 62304) artifacts included in or
+   referenced by this repository represent work-in-progress engineering
+   templates for potential future regulatory submissions. They do not
+   constitute a Declaration of Conformity, a validated clinical evaluation, or
+   authorization for clinical deployment.
+3. Assumption of Manufacturer Responsibility: The authors and contributors do
+   not act as a legal manufacturer under EU MDR and assume no regulatory,
+   clinical, or product liability. Any individual or organization that
+   compiles, modifies, integrates, or deploys this software for clinical or
+   medical purposes does so entirely at their own risk and automatically
+   assumes the sole legal role and obligations of the Manufacturer under
+   applicable medical device regulations (including obtaining CE marking prior
+   to clinical use).
+
+## Development target
+Repository for MyGray, a standalone medical device software
 (EU MDR, proposed class IIa, IEC 62304 class B) that receives DICOM Radiation Dose
 Structured Reports, stores them in an embedded Grafeo graph database, evaluates
 configurable dose rules and technical errors as alerts, and visualises everything
